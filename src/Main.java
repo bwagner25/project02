@@ -10,19 +10,36 @@ public class Main {
             System.out.println("\nWhat would you like to do?\n(1) Add a task.\n(2) Remove a task.\n(3) Update a task.\n(4) List tasks.\n(0) Exit.\n");
             String userInput = input.nextLine();
             while (!(userInput.equals("0"))) {
-                if (userInput.equals("1")) {
-                    addTask();
+                boolean validInput = false;
+                while(!validInput) {
+                    switch (userInput) {
+                        case "1" -> {
+                            addTask();
+                            validInput = true;
+                        }
+                        case "2" -> {
+                            removeTask();
+                            validInput = true;
+                        }
+                        case "3" -> {
+                            updateTask();
+                            validInput = true;
+                        }
+                        case "4" -> {
+                            listTasks();
+                            validInput = true;
+                        }
+                        case "5" -> {
+                            listAllTasks();
+                            validInput = true;
+                        }
+                        default -> {
+                            System.out.println("That's not a valid option. Try again.");
+                            userInput = input.nextLine();
+                        }
+                    }
                 }
-                if (userInput.equals("2")) {
-                    removeTask();
-                }
-                if (userInput.equals("3")) {
-                    updateTask();
-                }
-                if (userInput.equals("4")) {
-                    listTasks();
-                }
-                System.out.println("\nWhat would you like to do?\n(1) Add a task.\n(2) Remove a task.\n(3) Update a task.\n(4) List tasks.\n(0) Exit.\n");
+                System.out.println("\nWhat would you like to do?\n(1) Add a task.\n(2) Remove a task.\n(3) Update a task.\n(4) List tasks by priority.\n(5) List all tasks.\n(0) Exit.\n");
                 userInput = input.nextLine();
             }
         }catch(Exception e){
@@ -72,9 +89,24 @@ public class Main {
     }
 
     static void listTasks(){
-        System.out.println("What priority would you like to list? (0-5 or all)");
+        System.out.println("What priority would you like to list? (0-5)");
         String priority = input.nextLine();
-        boolean validInput = false;
+        boolean validPriority = false;
+        while(!validPriority) {
+            switch (priority) {
+                case "0", "1", "2", "3", "4", "5" -> {
+                    validPriority = true;
+                    for (Task task : tasks) {
+                        if (task.getPriority() == parseInt(priority)) {
+                            System.out.println(task);
+                        }
+                    }
+                }
+                default -> System.out.println("That is not a valid priority level. Try again..");
+            }
+        }
+
+        /*boolean validInput = false;
         while(!validInput){
             switch (priority) {
                 case "0" -> {
@@ -125,15 +157,14 @@ public class Main {
                         }
                     }
                 }
-                case "all" -> {
-                    validInput = true;
-                    System.out.println(tasks);
-                }
                 default -> {
                     System.out.println("That's not one of the options. Try again.");
                     priority = input.nextLine();
                 }
             }
-        }
+        }*/
+    }
+    static void listAllTasks(){
+        System.out.println(tasks);
     }
 }
