@@ -105,65 +105,8 @@ public class Main {
                 default -> System.out.println("That is not a valid priority level. Try again..");
             }
         }
-
-        /*boolean validInput = false;
-        while(!validInput){
-            switch (priority) {
-                case "0" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 0) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                case "1" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 1) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                case "2" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 2) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                case "3" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 3) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                case "4" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 4) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                case "5" -> {
-                    validInput = true;
-                    for (Task task : tasks) {
-                        if (task.getPriority() == 5) {
-                            System.out.println(task);
-                        }
-                    }
-                }
-                default -> {
-                    System.out.println("That's not one of the options. Try again.");
-                    priority = input.nextLine();
-                }
-            }
-        }*/
     }
+
     static void listAllTasks(){
         System.out.println(tasks);
     }
