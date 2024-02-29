@@ -4,23 +4,23 @@ import static java.lang.Integer.parseInt;
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
+    public static ArrayList<Task> tasks = new ArrayList<>();
     public static void main(String[] args) {
         try{
-            ArrayList<Task> tasks = new ArrayList<>();
             System.out.println("\nWhat would you like to do?\n(1) Add a task.\n(2) Remove a task.\n(3) Update a task.\n(4) List tasks.\n(0) Exit.\n");
             String userInput = input.nextLine();
             while (!(userInput.equals("0"))) {
                 if (userInput.equals("1")) {
-                    addTask(tasks);
+                    addTask();
                 }
                 if (userInput.equals("2")) {
-                    removeTask(tasks);
+                    removeTask();
                 }
                 if (userInput.equals("3")) {
-                    updateTask(tasks);
+                    updateTask();
                 }
                 if (userInput.equals("4")) {
-                    listTasks(tasks);
+                    listTasks();
                 }
                 System.out.println("\nWhat would you like to do?\n(1) Add a task.\n(2) Remove a task.\n(3) Update a task.\n(4) List tasks.\n(0) Exit.\n");
                 userInput = input.nextLine();
@@ -29,7 +29,7 @@ public class Main {
             System.out.println("Something went wrong.");
         }
     }
-    static void addTask(ArrayList<Task> a){
+    static void addTask(){
         System.out.println("What is the title of the task you want to add?");
 
         String newTaskTitle = input.nextLine();
@@ -49,15 +49,15 @@ public class Main {
 
         }
         Task NewTask = new Task(newTaskTitle,newTaskDesc,newTaskPriority);
-        a.add(NewTask);
+        tasks.add(NewTask);
     }
-    static void removeTask(ArrayList<Task> a){
+    static void removeTask(){
         System.out.println("Which number task would you like to remove?");
         String taskNumber = input.nextLine();
         int taskIndex = parseInt(taskNumber) - 1;
-        a.remove(taskIndex);
+        tasks.remove(taskIndex);
     }
-    static void updateTask(ArrayList<Task> a){
+    static void updateTask(){
         System.out.println("Which number task would you like to update?");
         String taskNumber = input.nextLine();
         int taskIndex = parseInt(taskNumber) - 1;
@@ -68,10 +68,10 @@ public class Main {
         System.out.println("What is the priority of the updated task?");
         int updatedPriority = parseInt(input.nextLine());
         Task updatedTask = new Task(updatedTitle, updatedDesc, updatedPriority);
-        a.set(taskIndex, updatedTask);
+        tasks.set(taskIndex, updatedTask);
     }
 
-    static void listTasks(ArrayList<Task> a){
+    static void listTasks(){
         System.out.println("What priority would you like to list? (0-5 or all)");
         String priority = input.nextLine();
         boolean validInput = false;
@@ -79,7 +79,7 @@ public class Main {
             switch (priority) {
                 case "0" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 0) {
                             System.out.println(task);
                         }
@@ -87,7 +87,7 @@ public class Main {
                 }
                 case "1" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 1) {
                             System.out.println(task);
                         }
@@ -95,7 +95,7 @@ public class Main {
                 }
                 case "2" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 2) {
                             System.out.println(task);
                         }
@@ -103,7 +103,7 @@ public class Main {
                 }
                 case "3" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 3) {
                             System.out.println(task);
                         }
@@ -111,7 +111,7 @@ public class Main {
                 }
                 case "4" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 4) {
                             System.out.println(task);
                         }
@@ -119,7 +119,7 @@ public class Main {
                 }
                 case "5" -> {
                     validInput = true;
-                    for (Task task : a) {
+                    for (Task task : tasks) {
                         if (task.getPriority() == 5) {
                             System.out.println(task);
                         }
@@ -127,7 +127,7 @@ public class Main {
                 }
                 case "all" -> {
                     validInput = true;
-                    System.out.println(a);
+                    System.out.println(tasks);
                 }
                 default -> {
                     System.out.println("That's not one of the options. Try again.");
